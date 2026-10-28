@@ -179,7 +179,7 @@
     .word-item-german.das-word { color: var(--green); }
     .word-item-heading { display: flex; align-items: center; gap: 8px; min-width: 0; }
     .word-item-heading .word-item-german { margin: 0; }
-    .word-speak { display: inline-grid; flex: 0 0 auto; place-items: center; width: 34px; height: 32px; border: 1px solid #dfe5ed; border-radius: 10px; color: #4f637a; background: #fff; }
+    .word-speak { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 5px; min-height: 32px; border: 1px solid #dfe5ed; border-radius: 10px; padding: 0 8px; color: #4f637a; background: #fff; font-size: 11px; font-weight: 750; white-space: nowrap; }
     .word-speak:hover { color: var(--navy); border-color: #c4d0dc; background: #f6f8fb; }
     .word-speak svg { width: 17px; height: 17px; }
     .word-speak:focus-visible { outline: 3px solid rgba(202,163,74,.48); outline-offset: 2px; }
@@ -1150,7 +1150,7 @@
         const plural = item.plural ? (item.plural.toLowerCase().includes("usually") || item.plural.toLowerCase().includes("plural form only") ? `Plural: ${item.plural}` : `Plural: die ${item.plural}`) : "";
         const detail = plural || (item.forms && item.forms.length >= 3 ? `Forms: ich ${item.forms[0][1]} · du ${item.forms[1][1]} · er/sie/es ${item.forms[2][1]}` : item.rank ? `Frequency rank: ${item.rank}` : item.category);
         const example = item.example ? `<br>${safeText(item.example)} · ${safeText(item.exampleMeaning || "")}` : "";
-        return `<article class="word-item"><div class="word-item-top"><div><div class="word-item-heading"><h3 class="word-item-german${wordClass}">${safeText(title)}</h3><button class="word-speak" type="button" data-pronunciation="${safeText(title)}" aria-label="Hear ${safeText(title)} pronounced" title="Hear pronunciation"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3Z" fill="currentColor"/><path d="M13 7a4 4 0 0 1 0 6M14.5 4.5a7.5 7.5 0 0 1 0 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div><p class="word-item-meaning">${safeText(item.meaning)}</p></div><span class="word-type">${safeText(item.level)} · ${safeText(item.type)}</span></div><p class="word-item-example"><strong>${safeText(detail)}</strong>${example}</p></article>`;
+        return `<article class="word-item"><div class="word-item-top"><div><div class="word-item-heading"><h3 class="word-item-german${wordClass}">${safeText(title)}</h3><button class="word-speak" type="button" data-pronunciation="${safeText(title)}" aria-label="Hear ${safeText(title)} pronounced" title="Play German pronunciation"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 8v4h3l4 3V5L6 8H3Z" fill="currentColor"/><path d="M13 7a4 4 0 0 1 0 6M14.5 4.5a7.5 7.5 0 0 1 0 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Listen</span></button></div><p class="word-item-meaning">${safeText(item.meaning)}</p></div><span class="word-type">${safeText(item.level)} · ${safeText(item.type)}</span></div><p class="word-item-example"><strong>${safeText(detail)}</strong>${example}</p></article>`;
       }).join("");
       const end = Math.min(first + visible.length, filtered.length);
       const pagination = document.getElementById("word-pagination");
