@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rohinoffical-design.github.io/german-king-study/sitemap.xml
