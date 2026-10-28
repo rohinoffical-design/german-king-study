@@ -1,6 +1,6 @@
 # German King
 
-German King is a static, beginner-friendly German vocabulary study site. It includes A1 and A2 paths, flashcards, article and verb practice, a 10-question quiz, King's Word Quest, audio pronunciation when supported by the browser, search, topic filters, and a paginated word list.
+German King is a static, beginner-friendly German vocabulary study site. It includes A1 and A2 paths, flashcards, article and verb practice, a 10-question quiz, King's Word Quest, search, topic filters, and a paginated word list with a speaker button beside each entry. Pronunciation uses your browser's German speech voice when available.
 
 ## Open it
 
