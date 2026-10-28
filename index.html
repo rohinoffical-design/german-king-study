@@ -183,6 +183,7 @@
     .word-speak:hover { color: var(--navy); border-color: #c4d0dc; background: #f6f8fb; }
     .word-speak svg { width: 17px; height: 17px; }
     .word-speak:focus-visible { outline: 3px solid rgba(202,163,74,.48); outline-offset: 2px; }
+    .speech-status { position: fixed; right: 18px; bottom: 18px; z-index: 50; max-width: min(420px, calc(100vw - 36px)); padding: 13px 16px; border: 1px solid rgba(255,255,255,.18); border-radius: 13px; color: #fff; background: #1e344d; box-shadow: 0 12px 30px rgba(19,34,52,.22); font-size: 13px; line-height: 1.5; }
     .word-item-meaning { margin: 4px 0 8px; color: #535d51; font-size: 13px; }
     .word-item-example { margin: 0; color: #81877e; font-size: 11px; line-height: 1.5; }
     .word-type { flex: 0 0 auto; padding: 5px 7px; border-radius: 8px; color: #71806d; background: #f0f3ec; font-size: 9px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
@@ -545,6 +546,7 @@
     </section>
   </div>
 
+  <div id="speech-status" class="speech-status" role="status" aria-live="polite" hidden></div>
   <footer class="site-credit">Vocabulary data: German frequency, parts of speech, CEFR estimates, and grammar metadata from <a href="https://github.com/natema/wordhoard">wordhoard</a>; English glosses from the <a href="https://lector.dev/free/german-dictionary/">Lector German dictionary</a>, derived from Wiktionary via Kaikki. Vocabulary data is shared under CC BY-SA 4.0. Your study progress stays in this browser.</footer>
 
   <script src="./vocabulary.js"></script>
@@ -909,7 +911,13 @@
     }
 
     function speakText(text) {
-      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") return;
+      if (!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined") {
+        const status = document.getElementById("speech-status");
+        status.textContent = "Audio isn't available in this browser. Open German King in a browser with German text-to-speech, such as Chrome or Edge.";
+        status.hidden = false;
+        return;
+      }
+      document.getElementById("speech-status").hidden = true;
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = "de-DE";
       const germanVoice = window.speechSynthesis.getVoices().find(voice => /^de(?:-|$)/i.test(voice.lang));
